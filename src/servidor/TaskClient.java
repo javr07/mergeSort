@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mergesort;
+package servidor;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -34,7 +34,8 @@ class TaskClient {
          ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
          Object object = in.readObject();
          segmentoOrdenado = (List<Integer>) object;
-         return segmento;
+          System.out.println("segmento ordenado: " + segmentoOrdenado);
+         return segmentoOrdenado;
       });
    }
 
