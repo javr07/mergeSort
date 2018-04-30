@@ -25,18 +25,16 @@ import mergesort.Ordenamiento;
 public class SimpleClient {
 
     public static void main(String[] args) {
-        System.out.println("Client started");
+        System.out.println("Cliente iniciado");
         List<Integer> segmento;
         List<Future<List<Integer>>> futures = new ArrayList<>();
         try (Socket socket = new Socket("127.0.0.1", 5000)) {
-            System.out.println("Connected to a server");
+            System.out.println("Conectado al servidor");
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
             //recibir segmento
             Object object = in.readObject();
-
-            System.out.println("Object" + object.toString());
             segmento = (List<Integer>) object;
 
             List<Integer> segmento1;
@@ -47,9 +45,6 @@ public class SimpleClient {
 
             segmento1 = segmento.subList(0, mitad);
             segmento2 = segmento.subList(mitad, segmento.size());
-
-            System.out.println("segmento 1: " + segmento1);
-            System.out.println("segmento 2: " + segmento2);
 
             TaskOrdenarSegmento task = new TaskOrdenarSegmento();
 
@@ -72,21 +67,17 @@ public class SimpleClient {
             listaFinal.addAll(segmento2);
             
             Ordenamiento merge = new Ordenamiento();
-
             Integer[] arreglo = listaFinal.toArray(new Integer[listaFinal.size()]);
-
             merge.sort(arreglo);
-
-            System.out.println(Arrays.toString(arreglo));
 
             listaFinal = Arrays.asList(arreglo);
 
-            System.out.println("segmento: " + listaFinal);
+            System.out.println("Segmento ordenado: " + listaFinal);
             enviarRespuesta(listaFinal, out, socket);
 
         } catch (IOException | ClassNotFoundException ex) {
         }
-        System.out.println("Client Terminated");
+        System.out.println("Tarea terminada");
     }
 
     public static void enviarRespuesta(List<Integer> segmento, ObjectOutputStream out, Socket socket) {

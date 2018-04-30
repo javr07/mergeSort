@@ -34,7 +34,6 @@ class TaskClient {
          ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
          Object object = in.readObject();
          segmentoOrdenado = (List<Integer>) object;
-          System.out.println("segmento ordenado: " + segmentoOrdenado);
          return segmentoOrdenado;
       });
    }

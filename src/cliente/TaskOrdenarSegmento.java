@@ -23,7 +23,6 @@ public class TaskOrdenarSegmento {
             Ordenamiento merge = new Ordenamiento();
             Integer[] arreglo = segmento.toArray(new Integer[segmento.size()]);
             merge.sort(arreglo);
-            System.out.println("LISTA ORDENADA HILO: " + Arrays.toString(arreglo));
             segmentoOrdenado = Arrays.asList(arreglo);
             return segmentoOrdenado;
         });
